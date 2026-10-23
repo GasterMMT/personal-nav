@@ -1,0 +1,7 @@
+.vercel/
+node_modules/
+qa/
+.DS_Store
+Thumbs.db
+*.log
+tools/.font-cache/

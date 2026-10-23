@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>404 · GasterMMT</title>
+  <meta name="description" content="这扇门打不开。回到 GasterMMT 的入口，重新挑一处。">
+  <meta name="author" content="GasterMMT">
+  <meta name="theme-color" content="#F4F9FD">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="noindex">
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var hue = 205;
+      try {
+        var savedHue = parseInt(localStorage.getItem("gastermmt-hue"), 10);
+        if (isFinite(savedHue) && savedHue >= 0 && savedHue <= 360) hue = savedHue;
+      } catch (error) {}
+      var theme = "auto";
+      try {
+        var savedTheme = localStorage.getItem("gastermmt-theme");
+        if (savedTheme === "auto" || savedTheme === "light" || savedTheme === "dark") theme = savedTheme;
+      } catch (error) {}
+      var effects = "on";
+      try {
+        if (localStorage.getItem("gastermmt-effects") === "off") effects = "off";
+      } catch (error) {}
+      root.dataset.theme = theme;
+      root.dataset.effects = effects;
+      root.style.setProperty("--hue", String(hue));
+    })();
+  </script>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="preload" href="/assets/fonts/outfit-subset.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/sky-hand-subset.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/noto-sans-sc-subset.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/script.js" defer></script>
+</head>
+<body class="error-page" id="top">
+  <a class="skip-link" href="#main">跳到主要内容</a>
+
+  <div class="ambient" aria-hidden="true">
+    <div class="ambient-stars"></div>
+    <div class="ambient-twinkles"></div>
+    <div class="ambient-petals"></div>
+  </div>
+
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="GasterMMT，返回首页">
+      <span class="brand-star" aria-hidden="true"></span>
+      <span>GasterMMT</span>
+    </a>
+    <a class="button button--ghost" href="/">
+      <span>回到首页</span>
+      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </header>
+
+  <main class="error-main" id="main">
+    <section class="error-card" aria-labelledby="error-title">
+      <div class="error-copy">
+        <p class="eyebrow"><span class="eyebrow-spark" aria-hidden="true"></span>LOST IN THE SKY</p>
+        <div class="error-code" aria-hidden="true">404</div>
+        <h1 id="error-title">这扇门打不开。</h1>
+        <p>可能是地址写错了，也可能是它已经搬走。<br>回到入口，重新挑一处。</p>
+        <a class="button button--filled" href="/">
+          <span>回到首页</span>
+          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M2 8h11M9 3.5 13.5 8 9 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+      <div class="error-art" aria-hidden="true">
+        <svg viewBox="0 0 620 560" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <rect width="620" height="560" fill="var(--scene-sky)"/>
+          <circle cx="446" cy="154" r="138" fill="var(--scene-halo)"/>
+          <circle cx="446" cy="154" r="74" fill="var(--scene-moon)"/>
+          <circle cx="420" cy="132" r="8" fill="var(--scene-moon-spot)" opacity=".55"/>
+          <circle cx="468" cy="174" r="12" fill="var(--scene-moon-spot)" opacity=".35"/>
+          <circle cx="441" cy="188" r="5" fill="var(--scene-moon-spot)" opacity=".5"/>
+          <g fill="var(--scene-star)">
+            <path d="M126 104c1.3 5.8 3.6 8.1 9.4 9.4-5.8 1.3-8.1 3.6-9.4 9.4-1.3-5.8-3.6-8.1-9.4-9.4 5.8-1.3 8.1-3.6 9.4-9.4Z"/>
+            <path d="M534 296c1.2 5.2 3.2 7.2 8.4 8.4-5.2 1.2-7.2 3.2-8.4 8.4-1.2-5.2-3.2-7.2-8.4-8.4 5.2-1.2 7.2-3.2 8.4-8.4Z" opacity=".8"/>
+            <path d="M204 248c1 4.4 2.7 6.1 7.1 7.1-4.4 1-6.1 2.7-7.1 7.1-1-4.4-2.7-6.1-7.1-7.1 4.4-1 6.1-2.7 7.1-7.1Z" opacity=".6"/>
+            <circle cx="302" cy="86" r="1.8"/>
+            <circle cx="556" cy="82" r="1.4"/>
+            <circle cx="72" cy="244" r="1.7"/>
+            <circle cx="506" cy="414" r="1.4"/>
+          </g>
+          <path d="M80 380c48-28 96-23 132-3" stroke="var(--scene-star)" stroke-width="1" stroke-linecap="round" opacity=".2" stroke-dasharray="2 8" fill="none"/>
+          <g fill="var(--scene-cloud)">
+            <path d="M-44 438c37-38 86-40 119-15 17-30 55-39 86-17 25-28 67-20 82 13 35-8 68 9 82 40 22-2 40 6 52 20H-44v-41Z" opacity=".8"/>
+            <path d="M402 472c20-22 49-21 66-3 17-16 44-10 55 10 16-4 32 2 43 15H386c2-8 7-15 16-22Z" opacity=".55"/>
+          </g>
+          <path d="M0 468c72-24 132-16 184 10 56 27 113 24 170-6 46-24 96-27 266 7v81H0Z" fill="var(--scene-hill)" opacity=".8"/>
+          <path d="M0 512c78-23 140-12 201 13 60 25 118 15 174-12 52-25 103-26 245-6v53H0Z" fill="var(--scene-hill-2)"/>
+          <path d="M154 332c80-67 145-55 190 7 43-49 96-48 140 8" stroke="var(--scene-star)" stroke-width="1.2" stroke-linecap="round" opacity=".36" stroke-dasharray="3 10" fill="none"/>
+          <g transform="translate(322 280) rotate(-12)">
+            <path d="M-62 17 45-24 7 35Z" fill="var(--plane-1)"/>
+            <path d="M-62 17 7 35 0 63Z" fill="var(--plane-2)"/>
+            <path d="M45-24 7 35 0 63Z" fill="var(--plane-3)"/>
+            <path d="M-62 17 7 35" stroke="var(--plane-line)" stroke-width="1" opacity=".45"/>
+          </g>
+          <g fill="var(--petal-strong)">
+            <path d="M132 388c10-11 23-6 22 7-1 12-15 18-24 10-6-6-4-12 2-17Z" opacity=".6"/>
+            <path d="M546 376c8-9 18-4 17 6-1 10-12 14-19 7-5-5-3-9 2-13Z" opacity=".45"/>
+          </g>
+        </svg>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p class="footer-brand">GasterMMT<span class="brand-star" aria-hidden="true"></span></p>
+    <p class="footer-copy">© 2026 GasterMMT&nbsp;&nbsp;·&nbsp;&nbsp;保持好奇。</p>
+    <a class="top-link" href="/">
+      <span>回到入口</span>
+      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M4 12 12 4M6 4h6v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GasterMMT · 一小片天空</title>
+  <meta name="description" content="GasterMMT 的个人站点入口：博客、音乐播放器、图床，以及以后会加入的新地方。">
+  <meta name="author" content="GasterMMT">
+  <meta name="theme-color" content="#F4F9FD">
+  <meta name="color-scheme" content="light dark">
+  <meta property="og:title" content="GasterMMT · 一小片天空">
+  <meta property="og:description" content="把喜欢的东西，都放在这里。">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="zh_CN">
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var hue = 205;
+      try {
+        var savedHue = parseInt(localStorage.getItem("gastermmt-hue"), 10);
+        if (isFinite(savedHue) && savedHue >= 0 && savedHue <= 360) hue = savedHue;
+      } catch (error) {}
+      var theme = "auto";
+      try {
+        var savedTheme = localStorage.getItem("gastermmt-theme");
+        if (savedTheme === "auto" || savedTheme === "light" || savedTheme === "dark") theme = savedTheme;
+      } catch (error) {}
+      var effects = "on";
+      try {
+        if (localStorage.getItem("gastermmt-effects") === "off") effects = "off";
+      } catch (error) {}
+      root.dataset.theme = theme;
+      root.dataset.effects = effects;
+      root.style.setProperty("--hue", String(hue));
+    })();
+  </script>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="preload" href="/assets/fonts/outfit-subset.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/sky-hand-subset.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/noto-sans-sc-subset.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/script.js" defer></script>
+</head>
+<body id="top">
+  <a class="skip-link" href="#main">跳到主要内容</a>
+
+  <div class="ambient" aria-hidden="true">
+    <div class="ambient-stars"></div>
+    <div class="ambient-twinkles"></div>
+    <div class="ambient-petals"></div>
+  </div>
+
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="GasterMMT，返回首页">
+      <span class="brand-star" aria-hidden="true"></span>
+      <span>GasterMMT</span>
+    </a>
+
+    <div class="appearance">
+      <button class="appearance-trigger" type="button" data-appearance-toggle aria-label="自定义外观" aria-haspopup="dialog" aria-expanded="false" aria-controls="appearance-panel">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 3a9 9 0 1 0 0 18h1.1a2.2 2.2 0 0 0 0-4.4h-.4a2 2 0 0 1 0-4h3.6A4.7 4.7 0 0 0 21 7.9 4.8 4.8 0 0 0 16.2 3H12Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          <circle cx="7.5" cy="10.5" r="1" fill="currentColor"/>
+          <circle cx="10.2" cy="6.9" r="1" fill="currentColor"/>
+          <circle cx="14.8" cy="7" r="1" fill="currentColor"/>
+          <circle cx="18.2" cy="10.8" r="1" fill="currentColor"/>
+        </svg>
+        <span>外观</span>
+        <span class="appearance-dot" aria-hidden="true"></span>
+      </button>
+
+      <section class="appearance-panel" id="appearance-panel" role="dialog" aria-modal="false" aria-labelledby="appearance-title" hidden>
+        <div class="appearance-head">
+          <div>
+            <p class="eyebrow">APPEARANCE / 外观</p>
+            <h2 id="appearance-title">给天空换个颜色。</h2>
+          </div>
+          <button class="appearance-close" type="button" aria-label="关闭外观设置">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="m5 5 10 10M15 5 5 15" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </div>
+
+        <fieldset class="appearance-group">
+          <legend>明暗模式</legend>
+          <div class="mode-switch">
+            <button class="mode-button" type="button" data-theme-choice="auto" aria-pressed="true">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="3" y="4.5" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.6"/>
+                <path d="M9 20.5h6M12 17.5v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+              <span>跟随系统</span>
+            </button>
+            <button class="mode-button" type="button" data-theme-choice="light" aria-pressed="false">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/>
+                <path d="M12 2.5v2.2M12 19.3v2.2M21.5 12h-2.2M4.7 12H2.5M18.7 5.3l-1.6 1.6M6.9 17.1l-1.6 1.6M18.7 18.7l-1.6-1.6M6.9 6.9 5.3 5.3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+              <span>浅色</span>
+            </button>
+            <button class="mode-button" type="button" data-theme-choice="dark" aria-pressed="false">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M20.2 14.1A8.5 8.5 0 0 1 9.9 3.8 8.5 8.5 0 1 0 20.2 14.1Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+              </svg>
+              <span>深色</span>
+            </button>
+          </div>
+        </fieldset>
+
+        <fieldset class="appearance-group">
+          <legend>主题色 <span class="hue-name" id="hue-name">晴空</span></legend>
+          <div class="swatches" role="group" aria-label="主题色预设">
+            <button class="swatch" type="button" data-hue="205" aria-label="晴空" aria-pressed="true" style="--swatch-hue: 205"></button>
+            <button class="swatch" type="button" data-hue="220" aria-label="雾蓝" aria-pressed="false" style="--swatch-hue: 220"></button>
+            <button class="swatch" type="button" data-hue="160" aria-label="薄荷" aria-pressed="false" style="--swatch-hue: 160"></button>
+            <button class="swatch" type="button" data-hue="335" aria-label="樱花" aria-pressed="false" style="--swatch-hue: 335"></button>
+            <button class="swatch" type="button" data-hue="26" aria-label="晚霞" aria-pressed="false" style="--swatch-hue: 26"></button>
+            <button class="swatch" type="button" data-hue="268" aria-label="星紫" aria-pressed="false" style="--swatch-hue: 268"></button>
+          </div>
+          <label class="hue-label" for="theme-hue">自定义色相</label>
+          <input class="hue-slider" id="theme-hue" type="range" min="0" max="360" step="1" value="205">
+        </fieldset>
+
+        <label class="appearance-group appearance-group--row">
+          <span class="effect-copy">
+            <span class="appearance-label">背景动效</span>
+            <span class="appearance-hint">星屑闪烁与花瓣飘落</span>
+          </span>
+          <span class="switch">
+            <input id="effects-toggle" type="checkbox" checked>
+            <span class="switch-track" aria-hidden="true"><span></span></span>
+          </span>
+        </label>
+
+        <div class="appearance-foot">
+          <p>设置只保存在你的浏览器里。</p>
+          <button class="appearance-reset" type="button">恢复默认</button>
+        </div>
+      </section>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-spark" aria-hidden="true"></span>UNDER THE SAME SKY</p>
+        <h1 id="hero-title">把喜欢的，<br>都放在这里<span class="accent">。</span></h1>
+        <p class="hero-lead">博客、音乐、图床，还有更多去处。<br>这里是我在互联网上的一小片天空。</p>
+        <div class="hero-actions">
+          <a class="button button--filled" href="#places">
+            <span>浏览去处</span>
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M8 2v11M3.5 8.5 8 13l4.5-4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <button class="button button--ghost appearance-open" type="button" data-appearance-toggle aria-haspopup="dialog" aria-expanded="false" aria-controls="appearance-panel">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 3a9 9 0 1 0 0 18h1.1a2.2 2.2 0 0 0 0-4.4h-.4a2 2 0 0 1 0-4h3.6A4.7 4.7 0 0 0 21 7.9 4.8 4.8 0 0 0 16.2 3H12Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+              <circle cx="7.5" cy="10.5" r="1" fill="currentColor"/>
+              <circle cx="10.2" cy="6.9" r="1" fill="currentColor"/>
+              <circle cx="14.8" cy="7" r="1" fill="currentColor"/>
+              <circle cx="18.2" cy="10.8" r="1" fill="currentColor"/>
+            </svg>
+            <span>换个颜色</span>
+          </button>
+        </div>
+        <p class="hero-note"><span class="note-dot" aria-hidden="true"></span>颜色与动效，都可以按你的喜好来。</p>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-window" aria-hidden="true">
+          <svg class="sky-scene" viewBox="0 0 440 560" preserveAspectRatio="xMidYMid slice" focusable="false">
+            <rect width="440" height="560" fill="var(--scene-sky)"/>
+            <circle cx="300" cy="138" r="122" fill="var(--scene-halo)"/>
+            <circle cx="300" cy="138" r="72" fill="var(--scene-moon)"/>
+            <circle cx="276" cy="118" r="8" fill="var(--scene-moon-spot)" opacity=".55"/>
+            <circle cx="320" cy="158" r="12" fill="var(--scene-moon-spot)" opacity=".35"/>
+            <circle cx="295" cy="170" r="5" fill="var(--scene-moon-spot)" opacity=".5"/>
+            <g fill="var(--scene-star)">
+              <path d="M92 120c1.2 5.6 3.4 7.8 9 9-5.6 1.2-7.8 3.4-9 9-1.2-5.6-3.4-7.8-9-9 5.6-1.2 7.8-3.4 9-9Z"/>
+              <path d="M174 72c1.1 5 3 7 8 8-5 1-6.9 3-8 8-1.1-5-3-7-8-8 5-1 6.9-3 8-8Z" opacity=".8"/>
+              <path d="M356 250c1.4 6.5 4 9 10.5 10.5-6.5 1.5-9.1 4-10.5 10.5-1.4-6.5-4-9-10.5-10.5 6.5-1.5 9.1-4 10.5-10.5Z" opacity=".7"/>
+              <circle cx="130" cy="220" r="2"/>
+              <circle cx="360" cy="88" r="1.7"/>
+              <circle cx="220" cy="46" r="1.4"/>
+              <circle cx="56" cy="296" r="1.6"/>
+              <circle cx="398" cy="326" r="1.2"/>
+            </g>
+            <path d="M70 330l28-31" stroke="var(--scene-star)" stroke-width="1.1" stroke-linecap="round" opacity=".35"/>
+            <path d="m66 326-4 8" stroke="var(--scene-star)" stroke-width="1.1" stroke-linecap="round" opacity=".2"/>
+            <g fill="var(--scene-cloud)">
+              <path d="M-56 394c34-35 78-39 111-17 15-31 50-41 82-22 21-29 61-28 82 0 33-12 66 2 82 35 23-2 39 6 51 19H-56v-15Z" opacity=".82"/>
+              <path d="M166 457c22-21 50-23 71-8 14-18 41-18 54 2 19-3 37 4 47 19H148c2-5 9-10 18-13Z" opacity=".62"/>
+            </g>
+            <path d="M0 455c48-21 87-19 131-2 44 16 85 18 135-3 48-20 93-22 174 2v108H0Z" fill="var(--scene-hill)"/>
+            <path d="M0 501c62-26 112-19 175 2 62 21 114 8 163-8 38-13 70-13 102 1v64H0Z" fill="var(--scene-hill-2)"/>
+            <g fill="var(--petal-strong)">
+              <path d="M330 310c11-11 23-5 22 8-1 12-15 17-24 9-6-6-4-12 2-17Z" opacity=".7"/>
+              <path d="M92 360c9-9 19-4 18 6-1 10-12 14-20 7-5-5-3-9 2-13Z" opacity=".5"/>
+            </g>
+          </svg>
+        </div>
+
+        <aside class="hero-quote" aria-label="个人签名">
+          <span class="quote-spark" aria-hidden="true"></span>
+          <p class="quote-en">Do what you love,<br>love what you do.</p>
+          <p class="quote-cn">做喜欢的事，喜欢正在做的事。</p>
+          <p class="quote-by">GasterMMT / 关于我</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="places" id="places" aria-labelledby="places-title">
+      <header class="section-head">
+        <div>
+          <p class="eyebrow">PLACES / 去处</p>
+          <h2 id="places-title">常去的地方</h2>
+        </div>
+        <p class="section-note">
+          新的站点会陆续加入
+          <span class="update-pill"><span aria-hidden="true">＋</span> 持续更新</span>
+        </p>
+      </header>
+
+      <nav class="site-grid" aria-label="站点导航">
+        <a class="site-card site-card--featured" href="https://blog.gastermmt.top" target="_blank" rel="noopener noreferrer">
+          <div class="site-copy">
+            <p class="eyebrow">WRITING / 文字</p>
+            <h3>博客</h3>
+            <p class="site-desc">日常、随笔，和一些想写下来的东西。</p>
+            <div class="site-tags">
+              <span>随笔</span><span>日常</span><span>记录</span>
+            </div>
+            <div class="site-foot">
+              <span class="site-domain">blog.gastermmt.top</span>
+              <span class="site-go">
+                <span>前往</span>
+                <svg viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                  <path d="M4 14 14 4M6 4h8v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+          <div class="site-art" aria-hidden="true">
+            <svg viewBox="0 0 620 420" preserveAspectRatio="xMidYMid slice" focusable="false">
+              <rect width="620" height="420" fill="var(--scene-sky)"/>
+              <circle cx="482" cy="108" r="104" fill="var(--scene-halo)"/>
+              <circle cx="482" cy="108" r="50" fill="var(--scene-moon)"/>
+              <circle cx="464" cy="92" r="7" fill="var(--scene-moon-spot)" opacity=".5"/>
+              <circle cx="502" cy="126" r="10" fill="var(--scene-moon-spot)" opacity=".35"/>
+              <g fill="var(--scene-star)">
+                <path d="M108 78c1.4 6.2 3.8 8.6 10 10-6.2 1.4-8.6 3.8-10 10-1.4-6.2-3.8-8.6-10-10 6.2-1.4 8.6-3.8 10-10Z"/>
+                <path d="M548 228c1.2 5.2 3.2 7.2 8.4 8.4-5.2 1.2-7.2 3.2-8.4 8.4-1.2-5.2-3.2-7.2-8.4-8.4 5.2-1.2 7.2-3.2 8.4-8.4Z" opacity=".8"/>
+                <circle cx="164" cy="150" r="1.8"/>
+                <circle cx="366" cy="58" r="1.4"/>
+                <circle cx="560" cy="68" r="1.8"/>
+                <circle cx="54" cy="202" r="1.3"/>
+              </g>
+              <path d="M100 154c55 12 106 10 153-5" stroke="var(--scene-star)" stroke-width="1" stroke-linecap="round" opacity=".24" stroke-dasharray="2 8"/>
+              <g fill="var(--scene-cloud)">
+                <path d="M-44 340c35-38 81-39 113-14 16-29 52-38 81-17 25-27 65-19 79 13 34-7 65 9 79 39 21-2 38 6 49 20H-44v-41Z" opacity=".8"/>
+                <path d="M426 358c17-17 41-16 54-2 15-13 37-7 44 11 13 0 24 6 31 17H414c1-9 5-18 12-26Z" opacity=".55"/>
+              </g>
+              <path d="M0 348c70-19 129-11 181 10 57 23 111 19 165-7 46-22 101-25 274 7v62H0Z" fill="var(--scene-hill)" opacity=".8"/>
+              <path d="M0 382c79-20 140-10 200 12 61 22 118 10 174-17 51-24 101-24 246-5v48H0Z" fill="var(--scene-hill-2)"/>
+              <path d="M144 252c100-65 173-50 231 30" stroke="var(--scene-star)" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="3 9" opacity=".5" fill="none"/>
+              <g transform="translate(366 220) rotate(-8)">
+                <path d="M-78 22 54-30 8 42Z" fill="var(--plane-1)"/>
+                <path d="M-78 22 8 42 0 76Z" fill="var(--plane-2)"/>
+                <path d="M54-30 8 42 0 76Z" fill="var(--plane-3)"/>
+                <path d="M-78 22 8 42" stroke="var(--plane-line)" stroke-width="1" opacity=".45"/>
+              </g>
+              <g fill="var(--petal-strong)">
+                <path d="M112 286c10-11 23-6 22 7-1 12-15 18-24 10-6-6-4-12 2-17Z" opacity=".7"/>
+                <path d="M530 300c8-9 18-4 17 6-1 10-12 14-19 7-5-5-3-9 2-13Z" opacity=".5"/>
+              </g>
+            </svg>
+          </div>
+          <span class="sr-only">（在新标签页打开）</span>
+        </a>
+
+        <a class="site-card site-card--small site-card--music" href="https://folia.gastermmt.top" target="_blank" rel="noopener noreferrer">
+          <div class="site-art" aria-hidden="true">
+            <svg viewBox="0 0 620 360" preserveAspectRatio="xMidYMid slice" focusable="false">
+              <rect width="620" height="360" fill="var(--scene-sky)"/>
+              <circle cx="474" cy="72" r="76" fill="var(--scene-halo)"/>
+              <circle cx="474" cy="72" r="34" fill="var(--scene-moon)"/>
+              <g fill="var(--scene-star)">
+                <path d="M530 226c1.2 5 3.1 6.9 8 8-4.9 1.1-6.8 3-8 8-1.2-5-3.1-6.9-8-8 4.9-1.1 6.8-3 8-8Z" opacity=".8"/>
+                <circle cx="128" cy="74" r="2"/>
+                <circle cx="388" cy="48" r="1.5"/>
+                <circle cx="570" cy="128" r="1.4"/>
+                <circle cx="58" cy="206" r="1.8"/>
+              </g>
+              <circle cx="284" cy="190" r="104" fill="var(--scene-record)"/>
+              <circle cx="284" cy="190" r="88" stroke="var(--scene-record-line)" stroke-width="1" fill="none" opacity=".7"/>
+              <circle cx="284" cy="190" r="72" stroke="var(--scene-record-line)" stroke-width="1" fill="none" opacity=".55"/>
+              <circle cx="284" cy="190" r="56" stroke="var(--scene-record-line)" stroke-width="1" fill="none" opacity=".4"/>
+              <circle cx="284" cy="190" r="25" fill="var(--scene-label)"/>
+              <circle cx="284" cy="190" r="5" fill="var(--scene-sky)"/>
+              <path d="M397 74v166" stroke="var(--scene-record-line)" stroke-width="4" stroke-linecap="round"/>
+              <path d="M397 74h19" stroke="var(--scene-record-line)" stroke-width="4" stroke-linecap="round"/>
+              <circle cx="389" cy="236" r="16" fill="var(--scene-record)" stroke="var(--scene-record-line)" stroke-width="2"/>
+              <path d="M404 114c23 18 38 44 38 74" stroke="var(--scene-star)" stroke-width="1.2" stroke-linecap="round" opacity=".42" stroke-dasharray="2 7" fill="none"/>
+              <g fill="var(--scene-cloud)">
+                <path d="M-30 310c24-27 57-26 77-8 15-22 44-24 61-5 17-15 43-6 49 14 20-3 38 4 48 16H-30v-17Z" opacity=".75"/>
+                <path d="M430 320c15-20 39-20 53-4 13-13 33-10 41 6H418c0-1 4-2 12-2Z" opacity=".5"/>
+              </g>
+              <g fill="var(--petal-strong)">
+                <path d="M142 272c8-9 18-4 17 6-1 10-12 14-19 7-5-5-3-9 2-13Z" opacity=".55"/>
+              </g>
+            </svg>
+          </div>
+          <div class="site-copy">
+            <p class="eyebrow">LISTENING / 声音</p>
+            <h3>音乐</h3>
+            <p class="site-desc">随时打开，听一会儿喜欢的歌。</p>
+            <div class="site-tags">
+              <span>播放器</span><span>歌词</span>
+            </div>
+            <div class="site-foot">
+              <span class="site-domain">folia.gastermmt.top</span>
+              <span class="site-go">
+                <span>前往</span>
+                <svg viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                  <path d="M4 14 14 4M6 4h8v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+          <span class="sr-only">（在新标签页打开）</span>
+        </a>
+
+        <a class="site-card site-card--small site-card--image" href="https://img.gastermmt.top" target="_blank" rel="noopener noreferrer">
+          <div class="site-art" aria-hidden="true">
+            <svg viewBox="0 0 620 360" preserveAspectRatio="xMidYMid slice" focusable="false">
+              <defs>
+                <clipPath id="image-frame-clip">
+                  <rect x="208" y="92" width="228" height="166" rx="18"/>
+                </clipPath>
+              </defs>
+              <rect width="620" height="360" fill="var(--scene-sky)"/>
+              <g fill="var(--scene-star)">
+                <path d="M110 82c1.2 5.2 3.2 7.2 8.4 8.4-5.2 1.2-7.2 3.2-8.4 8.4-1.2-5.2-3.2-7.2-8.4-8.4 5.2-1.2 7.2-3.2 8.4-8.4Z"/>
+                <path d="M508 232c1.2 5 3.1 6.9 8 8-4.9 1.1-6.8 3-8 8-1.2-5-3.1-6.9-8-8 4.9-1.1 6.8-3 8-8Z" opacity=".8"/>
+                <circle cx="504" cy="74" r="1.8"/>
+                <circle cx="88" cy="234" r="1.4"/>
+                <circle cx="568" cy="146" r="1.5"/>
+              </g>
+              <g transform="rotate(-2.5 320 180)">
+                <rect x="182" y="66" width="276" height="228" rx="28" fill="var(--scene-frame-2)" opacity=".55"/>
+                <rect x="192" y="76" width="260" height="216" rx="26" fill="var(--scene-frame)"/>
+                <rect x="208" y="92" width="228" height="166" rx="18" fill="var(--scene-sky-deep)"/>
+                <g clip-path="url(#image-frame-clip)">
+                  <circle cx="398" cy="130" r="29" fill="var(--scene-moon)"/>
+                  <circle cx="386" cy="122" r="24" fill="var(--scene-sky-deep)"/>
+                  <path d="M208 224c30-27 56-22 78 2 22-31 55-31 76-5 14-12 28-12 42 1v36H208Z" fill="var(--scene-hill)"/>
+                  <path d="M208 250c36-17 69-14 98 3 38 20 73 13 112-8v13H208Z" fill="var(--scene-hill-2)"/>
+                  <circle cx="244" cy="112" r="1.6" fill="var(--scene-star)"/>
+                  <circle cx="410" cy="96" r="1.1" fill="var(--scene-star)"/>
+                </g>
+                <path d="M228 274h188" stroke="var(--scene-frame-line)" stroke-width="1" opacity=".35"/>
+                <circle cx="476" cy="92" r="7" fill="var(--scene-frame-2)"/>
+              </g>
+              <g fill="var(--scene-cloud)">
+                <path d="M-36 322c27-24 57-22 75-1 15-18 41-18 54 1 15-13 36-6 42 12 11-3 21 0 29 9H-36v-21Z" opacity=".65"/>
+                <path d="M490 322c14-17 34-15 45 1 16-11 36-4 42 11H480c0-5 4-9 10-12Z" opacity=".45"/>
+              </g>
+              <g fill="var(--petal-strong)">
+                <path d="M104 270c8-9 18-4 17 6-1 10-12 14-19 7-5-5-3-9 2-13Z" opacity=".55"/>
+                <path d="M544 298c8-9 18-4 17 6-1 10-12 14-19 7-5-5-3-9 2-13Z" opacity=".4"/>
+              </g>
+            </svg>
+          </div>
+          <div class="site-copy">
+            <p class="eyebrow">IMAGES / 图像</p>
+            <h3>图床</h3>
+            <p class="site-desc">图片与文件，有一个小小的存放处。</p>
+            <div class="site-tags">
+              <span>图片</span><span>文件</span>
+            </div>
+            <div class="site-foot">
+              <span class="site-domain">img.gastermmt.top</span>
+              <span class="site-go">
+                <span>前往</span>
+                <svg viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                  <path d="M4 14 14 4M6 4h8v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+          <span class="sr-only">（在新标签页打开）</span>
+        </a>
+      </nav>
+    </section>
+
+    <section class="closing" aria-label="关于与致谢">
+      <article class="about-block">
+        <p class="eyebrow">ABOUT / 关于</p>
+        <h2>一页，慢慢变长。</h2>
+        <p>这个页面只做一件事：把我做的东西收在同一个入口。以后有新站点，也会继续加进来。</p>
+        <p>如果这里碰巧也有你喜欢的东西，那就更好了。</p>
+        <p class="about-note">没有算法，也没有信息流；只有我常去的地方。</p>
+        <a class="button button--outline" href="https://github.com/GasterMMT" target="_blank" rel="noopener noreferrer">
+          <span>在 GitHub 找到我</span>
+          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M4 12 12 4M6 4h6v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="sr-only">（在新标签页打开）</span>
+        </a>
+      </article>
+
+      <article class="credits-block" aria-labelledby="credits-title">
+        <p class="eyebrow">THANKS / 致谢</p>
+        <h2 id="credits-title">不是从零开始。</h2>
+        <p class="credits-lead">这些子站分别基于以下开源项目搭建。谢谢原作者，也谢谢每一位贡献者。</p>
+        <ul class="credit-list">
+          <li>
+            <a class="credit-link" href="https://github.com/LyraVoid/Shirone" target="_blank" rel="noopener noreferrer">
+              <span class="credit-main">
+                <span class="credit-name">Shirone</span>
+                <span class="credit-role">博客主题 · LyraVoid</span>
+              </span>
+              <span class="credit-end">
+                <span class="credit-source">GitHub</span>
+                <svg viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                  <path d="M4 14 14 4M6 4h8v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span class="sr-only">（在新标签页打开）</span>
+            </a>
+          </li>
+          <li>
+            <a class="credit-link" href="https://github.com/chthollyphile/folia-major" target="_blank" rel="noopener noreferrer">
+              <span class="credit-main">
+                <span class="credit-name">Folia</span>
+                <span class="credit-role">音乐播放器 · chthollyphile</span>
+              </span>
+              <span class="credit-end">
+                <span class="credit-source">GitHub</span>
+                <svg viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                  <path d="M4 14 14 4M6 4h8v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span class="sr-only">（在新标签页打开）</span>
+            </a>
+          </li>
+          <li>
+            <a class="credit-link" href="https://github.com/MarSeventh/CloudFlare-ImgBed" target="_blank" rel="noopener noreferrer">
+              <span class="credit-main">
+                <span class="credit-name">CloudFlare-ImgBed</span>
+                <span class="credit-role">图床程序 · MarSeventh</span>
+              </span>
+              <span class="credit-end">
+                <span class="credit-source">GitHub</span>
+                <svg viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                  <path d="M4 14 14 4M6 4h8v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span class="sr-only">（在新标签页打开）</span>
+            </a>
+          </li>
+        </ul>
+        <p class="license-note">以上项目遵循各自的开源许可证，版权归原作者及贡献者所有。</p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p class="footer-brand">GasterMMT<span class="brand-star" aria-hidden="true"></span></p>
+    <p class="footer-copy">© 2026 GasterMMT&nbsp;&nbsp;·&nbsp;&nbsp;保持好奇。</p>
+    <a class="top-link" href="#top">
+      <span>回到顶部</span>
+      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M8 14V3M3.5 7.5 8 3l4.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </footer>
+</body>
+</html>
